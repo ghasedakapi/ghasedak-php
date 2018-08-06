@@ -1,0 +1,25 @@
+{
+    "name": "ghasedak/php",
+    "type": "library",
+    "description": "A PHP wrapper for Ghasedak's API",
+    "keywords": ["Ghasedak", "sms", "api"],
+    "homepage": "https://github.com/ahoseinpour",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Ghasedak API Team",
+            "email": "support@ghasedak-ict.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ghasedak\\": "src/"
+        }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
+}
