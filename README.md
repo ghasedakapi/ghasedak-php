@@ -11,7 +11,7 @@
 The easiest way to install Behat is by using Composer:
 
 ```sh
-composer require ghasedak/ghasedakapi
+composer require ghasedak/php
 ```
  
 
@@ -20,10 +20,11 @@ composer require ghasedak/ghasedakapi
 
 You need a [Ghasedak](https://ghasedakapi.com) account. Register and get your API key.
 
+
 Create an instance from `Ghasedak` class with your API key:
 
 ```javascript
-$api = new \Ghasedak\GhasedakApi( env(GHASEDAKAPI_KEY));
+$api = new \Ghasedak\GhasedakApi( 'api_key');
 ```
 
 Send some sms:
