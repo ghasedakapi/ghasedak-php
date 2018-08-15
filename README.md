@@ -8,27 +8,22 @@
 
 ## install
 
-You can simply install and use ghasedak php library from composer:
+The easiest way to install Behat is by using Composer:
 
 ```sh
-composer require ghasedak/php
+composer require ghasedak/ghasedakapi
 ```
  
 
 ## usage
-
-Import `ghasedak` package:
-
-```javascript
-require  __DIR__ . '/vendor/autoload.php';
-```
+ 
 
 You need a [Ghasedak](https://ghasedakapi.com) account. Register and get your API key.
 
 Create an instance from `Ghasedak` class with your API key:
 
 ```javascript
-$api = new \Ghasedak\GhasedakApi( "API Key" );
+$api = new \Ghasedak\GhasedakApi( env(GHASEDAKAPI_KEY));
 ```
 
 Send some sms:
