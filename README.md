@@ -8,7 +8,7 @@
 
 ## install
 
-The easiest way to install Behat is by using Composer:
+The easiest way to install by using Composer:
 
 ```sh
 composer require ghasedak/php
