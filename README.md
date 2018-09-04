@@ -24,6 +24,8 @@ You need a [Ghasedak](https://ghasedakapi.com) account. Register and get your AP
 Create an instance from `Ghasedak` class with your API key:
 
 ```javascript
+require __DIR__ . '/vendor/autoload.php';
+
 $api = new \Ghasedak\GhasedakApi( 'api_key');
 ```
 
