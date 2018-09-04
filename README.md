@@ -11,7 +11,7 @@
 The easiest way to install by using Composer:
 
 ```sh
-composer require ghasedak/php
+composer require ghasedak/php:"dev-master"
 ```
  
 
@@ -33,7 +33,7 @@ Send some sms:
 
 ```javascript
 api.SendSimple( 
-	  "09xxxxxxxxx",
+      "09xxxxxxxxx",
       "Hello World!"
  );
 ```
