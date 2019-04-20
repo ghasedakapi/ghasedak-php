@@ -114,7 +114,7 @@ class GhasedakApi
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/send/bulk2';
+        $url = 'http://ghasedakapi.com/v1/sms/send/pair';
         $params = array(
             "receptor" => $receptor,
             "linenumber" => $linenumber,
@@ -144,7 +144,7 @@ class GhasedakApi
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/verify';
+        $url = 'http://ghasedakapi.com/v1/sms/template ';
         $params = array(
             "receptor" => $receptor,
             "type" => $type,
