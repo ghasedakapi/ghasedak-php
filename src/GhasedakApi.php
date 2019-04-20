@@ -5,7 +5,9 @@ use Ghasedak\Exceptions\ApiException;
 class GhasedakApi
 {
     protected $apiKey;
-    const VERSION = "1.0.0";
+    private $base_url;
+
+    const VERSION = "2.0.0";
 
     public function __construct($apiKey)
     {
@@ -18,9 +20,10 @@ class GhasedakApi
             exit;
         }
         $this->apiKey = $apiKey;
+        $this->base_url = 'http://api.ghasedak.io/v2/';
     }
 
-    protected function runCurl($url, $parameters = null)
+    protected function runCurl($path, $parameters = null)
     {
         $headers = array(
             'apikey:' . $this->apiKey,
@@ -30,8 +33,9 @@ class GhasedakApi
         );
         $params = "";
         if (!is_null($parameters)) {
-                $params = http_build_query($parameters);
+            $params = http_build_query($parameters);
         }
+        $url = $this->base_url . $path;
         $init = curl_init();
         curl_setopt($init, CURLOPT_URL, $url);
         curl_setopt($init, CURLOPT_HTTPHEADER, $headers);
@@ -73,7 +77,7 @@ class GhasedakApi
 
     public function SendSimple($linenumber = null, $receptor, $message, $senddate = null, $checkid = null)
     {
-        $url = 'http://ghasedakapi.com/v1/sms/send/simple';
+        $path = 'sms/send/simple';
         $params = array(
             "receptor" => $receptor,
             "linenumber" => $linenumber,
@@ -81,7 +85,7 @@ class GhasedakApi
             "senddate" => $senddate,
             "checkid" => $checkid
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function SendBulk($linenumber, $receptor, $message, $date, $checkid = null)
@@ -98,7 +102,7 @@ class GhasedakApi
         if (is_array($date)) {
             $date = implode(",", $date);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/send/bulk';
+        $path = 'sms/send/bulk';
         $params = array(
             "receptor" => $receptor,
             "linenumber" => $linenumber,
@@ -106,15 +110,15 @@ class GhasedakApi
             "senddate" => $date,
             "checkid" => $checkid
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
-    public function SendBulk2($linenumber, $receptor, $message, $date = null, $checkid = null)
+    public function SendPair($linenumber, $receptor, $message, $date = null, $checkid = null)
     {
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/send/pair';
+        $path = 'sms/send/pair';
         $params = array(
             "receptor" => $receptor,
             "linenumber" => $linenumber,
@@ -122,7 +126,7 @@ class GhasedakApi
             "senddate" => $date,
             "checkid" => $checkid
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function SendVoice($receptor, $message, $date = null)
@@ -130,13 +134,13 @@ class GhasedakApi
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $url = 'http://ghasedakapi.com/v1/voice/send';
+        $path = 'voice/send/simple';
         $params = array(
             "receptor" => $receptor,
             "message" => $message,
             "senddate" => $date,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function Verify($receptor, $type, $template, $param1, $param2 = null, $param3 = null)
@@ -144,7 +148,7 @@ class GhasedakApi
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/template ';
+        $path = 'verification/send/simple ';
         $params = array(
             "receptor" => $receptor,
             "type" => $type,
@@ -153,7 +157,7 @@ class GhasedakApi
             "param2" => $param2,
             "param3" => $param3,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function Status($messageid)
@@ -161,45 +165,21 @@ class GhasedakApi
         if (is_array($messageid)) {
             $messageid = implode(",", $messageid);
         }
-        $url = 'http://ghasedakapi.com/v1/account/status';
+        $path = 'sms/status';
         $params = array(
             "messageid" =>$messageid
         );
-        return $this->runCurl($url, $params);
-    }
-
-    public function Check($checkid)
-    {
-        if (is_array($checkid)) {
-            $checkid = implode(",", $checkid);
-        }
-        $url = 'http://ghasedakapi.com/v1/sms/check';
-        $params = array(
-            "checkid" => $checkid
-        );
-        return $this->runCurl($url, $params);
-    }
-
-    public function Select($messageid)
-    {
-        if (is_array($messageid)) {
-            $messageid = implode(",", $messageid);
-        }
-        $url = 'http://ghasedakapi.com/v1/sms/select';
-        $params = array(
-            "messageid" => $messageid
-        );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function AddGroup($name, $parent = null)
     {
-        $url = 'http://ghasedakapi.com/v1/contact/group/add';
+        $path = 'contact/group/new';
         $params = array(
             "name" => $name,
             "parent" => $parent
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function AddNumber($groupid, $number, $firstname = null, $lastname = null, $email = null)
@@ -217,7 +197,7 @@ class GhasedakApi
         if (is_array($email)) {
             $email = implode(",", $email);
         }
-        $url = 'http://ghasedakapi.com/v1/contact/group/number/add';
+        $path = 'contact/group/addnumber';
         $params = array(
             "groupid" => $groupid,
             "number" => $number,
@@ -225,56 +205,70 @@ class GhasedakApi
             "lastname" => $lastname,
             "email" => $email,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function GroupList($parent = null)
     {
-        $url = 'http://ghasedakapi.com/v1/contact/group/list';
+        $path = 'contact/group/list';
         $params = array(
             "parent" => $parent,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function GroupNumberList($groupid, $offset = null, $page = null)
     {
-        $url = 'http://ghasedakapi.com/v1/contact/group/number/list';
+        $path = 'contact/group/listnumber';
         $params = array(
             "groupid" => $groupid,
             "offset" => $offset,
             "page" => $page
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function GroupEdit($groupid, $name)
     {
-        $url = 'http://ghasedakapi.com/v1/contact/group/edit';
+        $path = 'contact/group/edit';
         $params = array(
             "groupid" => $groupid,
             "name" => $name
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function GroupRemove($groupid)
     {
-        $url = 'http://ghasedakapi.com/v1/contact/group/remove';
+        $path = 'contact/group/remove';
         $params = array(
             "groupid" => $groupid
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function ReceiveSms($linenumber, $isread)
     {
-        $url = 'http://ghasedakapi.com/v1/sms/receive';
+        $path = 'sms/receive/last';
         $params = array(
             "linenumber" => $linenumber,
             "isread" => $isread,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
+    }
+
+    public function ReceivePaging($linenumber, $isread ,$fromdate, $todate ,$page ,$offset)
+    {
+        $path = 'sms/receive/paging';
+        $params = array(
+            "linenumber" => $linenumber,
+            "isread" => $isread,
+            "fromdate" => $fromdate,
+            "todate" => $todate,
+            "page" => $page,
+            "offset" => $offset,
+        );
+        return $this->runCurl($path, $params);
     }
 
     public function CancelSms($messageid)
@@ -282,17 +276,17 @@ class GhasedakApi
         if (is_array($messageid)) {
             $messageid = implode(",", $messageid);
         }
-        $url = 'http://ghasedakapi.com/v1/sms/cancel';
+        $path = 'sms/cancel';
         $params = array(
             "messageid" => $messageid,
         );
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 
     public function AccountInfo()
     {
-        $url = 'http://ghasedakapi.com/v1/account/info';
+        $path = 'account/info';
         $params = array();
-        return $this->runCurl($url, $params);
+        return $this->runCurl($path, $params);
     }
 }
