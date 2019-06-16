@@ -32,7 +32,7 @@ $api = new \Ghasedak\GhasedakApi( 'api_key');
 Send some sms:
 
 ```javascript
-api.SendSimple( 
+$api->SendSimple("", 
       "09xxxxxxxxx",
       "Hello World!"
  );
