@@ -75,7 +75,7 @@ class GhasedakApi
         }
     }
 
-    public function SendSimple($linenumber = null, $receptor, $message, $senddate = null, $checkid = null)
+    public function SendSimple($receptor, $message , $linenumber = null, $senddate = null, $checkid = null)
     {
         $path = 'sms/send/simple';
         $params = array(
