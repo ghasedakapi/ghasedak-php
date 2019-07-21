@@ -1,15 +1,15 @@
 {
     "name": "ghasedak/php",
     "type": "library",
-    "description": "A PHP wrapper for Ghasedak's API",
-    "keywords": ["Ghasedak", "sms", "api"],
-    "homepage": "https://github.com/ahoseinpour",
+    "description": "ghasedak sms gateway package for PHP",
+    "keywords": ["ghasedak", "sms", "api", "sms-gateway", "notification"],
+    "homepage": "https://github.com/ghasedakapi/ghasedak-php",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
-            "name": "Ghasedak API Team",
-            "email": "support@ghasedak-ict.com"
+            "name": "Abbas Hosseinpour",
+            "email": "abdolzahra512@gmail.com"
         }
     ],
     "require": {
