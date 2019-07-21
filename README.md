@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="media/g4n.png"
+    <img src="g4php.png"
          height="200" alt="ghasedak for php">
 </p>
 
@@ -18,7 +18,7 @@ composer require ghasedak/php:"dev-master"
 ## usage
  
 
-You need a [Ghasedak](https://ghasedakapi.com) account. Register and get your API key.
+You need a [Ghasedak](https://ghasedak.io) account. Register and get your API key.
 
 
 Create an instance from `Ghasedak` class with your API key:
@@ -32,7 +32,7 @@ $api = new \Ghasedak\GhasedakApi( 'api_key');
 Send some sms:
 
 ```javascript
-api.SendSimple( 
+$api->SendSimple( 
       "09xxxxxxxxx",
       "Hello World!"
  );
@@ -40,5 +40,7 @@ api.SendSimple(
 
 :)
 
-##
+## License
+
+MIT
  
