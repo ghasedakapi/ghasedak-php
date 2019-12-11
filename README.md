@@ -33,8 +33,8 @@ Send some sms:
 ```javascript
 try{
     $message = "Test Message Ghasedak-Api";
-    $lineNumber = "30005006003793";
-    $receptor = "09373576025";
+    $lineNumber = "";
+    $receptor = "";
     $api = new \Ghasedak\GhasedakApi('api_key');
     $api->SendSimple($receptor,$message,$lineNumber);
 }
