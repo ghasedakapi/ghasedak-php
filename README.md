@@ -26,16 +26,24 @@ Create an instance from `Ghasedak` class with your API key:
 ```javascript
 require __DIR__ . '/vendor/autoload.php';
 
-$api = new \Ghasedak\GhasedakApi( 'api_key');
 ```
 
 Send some sms:
 
 ```javascript
-$api->SendSimple( 
-      "09xxxxxxxxx",
-      "Hello World!"
- );
+try{
+    $message = "Test Message Ghasedak-Api";
+    $lineNumber = "30005006003793";
+    $receptor = "09373576025";
+    $api = new \Ghasedak\GhasedakApi('api_key');
+    $api->SendSimple($receptor,$message,$lineNumber);
+}
+catch(\Ghasedak\Exceptions\ApiException $e){
+    echo $e->errorMessage();
+}
+catch(\Ghasedak\Exceptions\HttpException $e){
+    echo $e->errorMessage();
+}
 ```
 
 :)

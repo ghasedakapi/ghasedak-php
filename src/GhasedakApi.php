@@ -1,5 +1,7 @@
 <?php
 namespace Ghasedak;
+
+use Ghasedak\Exceptions\HttpException;
 use Ghasedak\Exceptions\ApiException;
 
 class GhasedakApi
@@ -49,27 +51,16 @@ class GhasedakApi
         $code = curl_getinfo($init, CURLINFO_HTTP_CODE);
         $curl_errno = curl_errno($init);
         $curl_error = curl_error($init);
-        try {
-            if ($curl_errno) {
-                throw new ApiException($curl_error, $curl_errno);
-            }
-        } catch (ApiException $e) {
-            return $e->errorMessage();
+        if ($curl_errno) {
+            throw new HttpException($curl_error, $curl_errno);
         }
         $json_result = json_decode($result);
-
-
         if ($code != 200 && is_null($json_result)) {
-
-            throw new ApiException("Request have errors", $code);
+            throw new HttpException("Request http errors", $code);
         } else {
             $return = $json_result->result;
-            try {
-                if ($return->code != 200) {
-                    throw new ApiException($return->message, $return->code);
-                }
-            } catch (ApiException $e) {
-                return $e->errorMessage();
+            if ($return->code != 200) {
+                throw new ApiException($return->message, $return->code);
             }
             return $json_result->items;
         }
