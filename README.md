@@ -34,7 +34,7 @@
 </p>
   
 <p align="center">  
-    <a href="#table-of-contents">English Document</a> | <a href="#فهرست-مطالب">مستندات فارسی</a>  
+    <a href="#table-of-contents">English Document</a> | <a href="#table-of-contents-fa">مستندات فارسی</a>  
 </p>  
   
 <!-- TABLE OF CONTENTS -->  
@@ -166,7 +166,7 @@ catch(\Ghasedak\Exceptions\HttpException $e){
 ## License  
 Freely distributable under the terms of the [MIT](https://opensource.org/licenses/MIT) license.  
   
-<h2 dir="rtl">فهرست مطالب </h2>
+<h2 dir="rtl" id="table-of-contents-fa">فهرست مطالب </h2>
 
 <ul dir="rtl">
 	<li><a href="#install-fa">نصب</a></li>
