@@ -1,4 +1,5 @@
 <?php
+
 namespace Ghasedak;
 
 use Ghasedak\Exceptions\HttpException;
@@ -25,7 +26,7 @@ class GhasedakApi
         $this->base_url = 'http://api.ghasedak.io/v2/';
     }
 
-    protected function runCurl($path, $parameters = null)
+    protected function runCurl($path, $parameters = null, $method = 'POST')
     {
         $headers = array(
             'apikey:' . $this->apiKey,
@@ -33,18 +34,17 @@ class GhasedakApi
             'Content-Type: application/x-www-form-urlencoded',
             'charset: utf-8'
         );
-        $params = "";
-        if (!is_null($parameters)) {
-            $params = http_build_query($parameters);
-        }
-        $url = $this->base_url . $path;
+
+        $params = http_build_query($parameters);
+        $url = $this->base_url . $path . '?agent=php';
+
         $init = curl_init();
         curl_setopt($init, CURLOPT_URL, $url);
         curl_setopt($init, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($init, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($init, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($init, CURLOPT_POST, true);
+        curl_setopt($init, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($init, CURLOPT_POSTFIELDS, $params);
 
         $result = curl_exec($init);
@@ -54,7 +54,9 @@ class GhasedakApi
         if ($curl_errno) {
             throw new HttpException($curl_error, $curl_errno);
         }
+
         $json_result = json_decode($result);
+
         if ($code != 200 && is_null($json_result)) {
             throw new HttpException("Request http errors", $code);
         } else {
@@ -62,11 +64,11 @@ class GhasedakApi
             if ($return->code != 200) {
                 throw new ApiException($return->message, $return->code);
             }
-            return $json_result->items;
+            return $json_result;
         }
     }
 
-    public function SendSimple($receptor, $message , $linenumber = null, $senddate = null, $checkid = null)
+    public function SendSimple($receptor, $message, $linenumber = null, $senddate = null, $checkid = null)
     {
         $path = 'sms/send/simple';
         $params = array(
@@ -76,7 +78,7 @@ class GhasedakApi
             "senddate" => $senddate,
             "checkid" => $checkid
         );
-        return $this->runCurl($path, $params);
+        return $this->runCurl($path, $params, 'POST');
     }
 
     public function SendBulk($linenumber, $receptor, $message, $date, $checkid = null)
@@ -120,47 +122,37 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function SendVoice($receptor, $message, $date = null)
+    public function Verify($receptor, $type, $template, ...$args)
     {
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
-        $path = 'voice/send/simple';
-        $params = array(
-            "receptor" => $receptor,
-            "message" => $message,
-            "senddate" => $date,
-        );
-        return $this->runCurl($path, $params);
-    }
-
-    public function Verify($receptor, $type, $template, $param1, $param2 = null, $param3 = null)
-    {
-        if (is_array($receptor)) {
-            $receptor = implode(",", $receptor);
-        }
-        $path = 'verification/send/simple ';
+        $path = 'verification/send/simple';
         $params = array(
             "receptor" => $receptor,
             "type" => $type,
-            "template" => $template,
-            "param1" => $param1,
-            "param2" => $param2,
-            "param3" => $param3,
+            "template" => $template
         );
+        if (count($args) > 10 || count($args) == 0) {
+            throw new ApiException('Number of parameters exceeds maximum of 10', '409');
+        }
+        foreach ($args as $key => $arg) {
+            $params['param' . ($key + 1)] = $arg;
+        }
         return $this->runCurl($path, $params);
     }
 
-    public function Status($messageid)
+    public function Status($id, $type)
     {
-        if (is_array($messageid)) {
-            $messageid = implode(",", $messageid);
+        if (is_array($id)) {
+            $id = implode(",", $id);
         }
         $path = 'sms/status';
         $params = array(
-            "messageid" =>$messageid
+            "id" => $id,
+            "type" => $type
         );
-        return $this->runCurl($path, $params);
+        return $this->runCurl($path, $params, 'GET');
     }
 
     public function AddGroup($name, $parent = null)
@@ -205,7 +197,7 @@ class GhasedakApi
         $params = array(
             "parent" => $parent,
         );
-        return $this->runCurl($path, $params);
+        return $this->runCurl($path, $params, 'GET');
     }
 
     public function GroupNumberList($groupid, $offset = null, $page = null)
@@ -216,7 +208,7 @@ class GhasedakApi
             "offset" => $offset,
             "page" => $page
         );
-        return $this->runCurl($path, $params);
+        return $this->runCurl($path, $params, 'GET');
     }
 
     public function GroupEdit($groupid, $name)
@@ -248,7 +240,7 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function ReceivePaging($linenumber, $isread ,$fromdate, $todate ,$page ,$offset)
+    public function ReceivePaging($linenumber, $isread, $fromdate, $todate, $page, $offset)
     {
         $path = 'sms/receive/paging';
         $params = array(
@@ -278,6 +270,6 @@ class GhasedakApi
     {
         $path = 'account/info';
         $params = array();
-        return $this->runCurl($path, $params);
+        return $this->runCurl($path, $params, 'GET');
     }
 }
