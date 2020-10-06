@@ -76,7 +76,8 @@ $api = new \Ghasedak\GhasedakApi( 'api_key');
 Send a sms:  
 ```php  
 $api->SendSimple(  
- "09xxxxxxxxx", // receptor "Hello World!", // message
+ "09xxxxxxxxx", // receptor
+ "Hello World!", // message
  "3000xxxxx" // choose a line number from your account
 );  
 ```  
