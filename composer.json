@@ -5,7 +5,6 @@
     "keywords": ["ghasedak", "sms", "api", "sms-gateway", "notification"],
     "homepage": "https://github.com/ghasedakapi/ghasedak-php",
     "license": "MIT",
-    "version": "1.0.1",
     "authors": [
         {
             "name": "Abbas Hosseinpour",
