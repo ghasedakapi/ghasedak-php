@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->  
 <br />  
 <p align="center">  
-  <a href="https://github.com/othneildrew/Best-README-Template">  
+  <a href="https://github.com/ghasedakapi/ghasedak-php">  
     <img src="g4php.png" alt="Logo" height="200" alt="ghasedak for php">  
   </a>  
   
@@ -51,18 +51,19 @@
   
 ## Install  
   
-The easiest way to install is by using Composer:  
+The easiest way to install is by using [Composer](https://getcomposer.org/):  
   
 ```sh  
 composer require ghasedak/php  
 ```  
-    
+Composer is a dependency manager for PHP which allows you to declare the libraries your project depends on, and it will manage (install/update) them for you.  If you are not familiar with Composer, you can read its documentations and download it via [getcomposer.org](https://getcomposer.org/).
+
+Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and place it in your project and follow the rest of the instructions below.   
 ## usage  
     
 To use the API, you need an API key. To get that you should have a [Ghasedak](https://ghasedak.io) account. Register and get your API key.  
   
 Then require the file autoload.php to get all classes and dependencies loaded.  
-  
 ```php  
 require __DIR__ . '/vendor/autoload.php';
 ```  
@@ -190,6 +191,13 @@ Freely distributable under the terms of the [MIT](https://opensource.org/license
 ```sh  
 composer require ghasedak/php  
 ```  
+<p>
+<a href="https://getcomposer.org/">Composer</a> سامانه‌ای برای مدیریت بسته‌های زبان PHP است که به شما امکان مدیریت (نصب / به روزرسانی) پکیج‌های نوشته شده در این زبان را می‌دهد. اگر با کامپوزر آشنایی ندارید، می‌توانید از طریق سایت <a href="https://getcomposer.org/">getcomposer.org</a> مستندات آن را مطالعه و اقدام به بارگیری و نصب آن کنید.
+</p>
+<p>
+در صورت عدم تمایل به استفاده از کامپوزر، می‌توانید این پکیج را از <a href="https://github.com/ghasedakapi/ghasedak-php/archive/master.zip">اینجا</a> دانلود کرده و محتویات فایل زیپ را درون پروژه‌ی خود استفاده کنید.
+</p>
+   
 <h2 dir="rtl" id="usage-fa"> نحوه استفاده </h2>
 
 <p dir="rtl">برای استفاده از این پکیج می‌بایست API key داشته باشید. جهت دریافت ابتدا در <a href="https://ghasedak.io/">سایت قاصدک</a> ثبت‌نام کنید و از پنل کاربری‌تان API key دریافت کنید.</p>  
