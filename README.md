@@ -195,7 +195,7 @@ composer require ghasedak/php
 <a href="https://getcomposer.org/">Composer</a> سامانه‌ای برای مدیریت بسته‌های زبان PHP است که به شما امکان مدیریت (نصب / به روزرسانی) پکیج‌های نوشته شده در این زبان را می‌دهد. اگر با کامپوزر آشنایی ندارید، می‌توانید از طریق سایت <a href="https://getcomposer.org/">getcomposer.org</a> مستندات آن را مطالعه و اقدام به بارگیری و نصب آن کنید.
 </p>
 <p dir="rtl">
-در صورت عدم تمایل به استفاده از کامپوزر، می‌توانید این پکیج را از <a href="https://github.com/ghasedakapi/ghasedak-php/archive/master.zip">اینجا</a> دانلود کرده و محتویات فایل زیپ را درون پروژه‌ی خود استفاده کنید.
+در صورت عدم تمایل به استفاده از کامپوزر، می‌توانید پکیج Ghasedak PHP را از <a href="https://github.com/ghasedakapi/ghasedak-php/archive/master.zip">اینجا</a> دانلود کرده و محتویات فایل زیپ را درون پروژه‌ی خود استفاده کنید.
 </p>
    
 <h2 dir="rtl" id="usage-fa"> نحوه استفاده </h2>
