@@ -58,7 +58,7 @@ composer require ghasedak/php
 ```  
 Composer is a dependency manager for PHP which allows you to declare the libraries your project depends on, and it will manage (install/update) them for you.  If you are not familiar with Composer, you can read its documentations and download it via [getcomposer.org](https://getcomposer.org/).
 
-Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and place it in your project and follow the rest of the instructions below.   
+Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and extract it in your project and follow the rest of the instructions below.   
 ## usage  
     
 To use the API, you need an API key. To get that you should have a [Ghasedak](https://ghasedak.io) account. Register and get your API key.  
