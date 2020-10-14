@@ -93,7 +93,7 @@ $api->SendSimple(
 | checkid | No | It is used to set a unique number for each SMS, and after sending the SMS, all the information of the sent message can be received with the `status` method. | string | 2071 |  
   
 ## Example  
-Here is a sample code for sending SMS. Please note that you must specify `line number` if you don't have a dedicated line.  
+Here is a sample code for sending SMS. Please note that you must specify `linenumber` if you don't have a dedicated line.  
 ```php  
 require __DIR__ . '/vendor/autoload.php';
  
@@ -275,7 +275,7 @@ $api->SendSimple(
 </div>
   
 <h2 dir="rtl" id="example-fa">نمونه کد</h2>
-<p dir="rtl"> کد زیر نمونه‌ای از متد ارسال تکی پیامک می‌باشد. لطفا توجه کنید که در صورت نداشتن خط اختصاصی می‌بایست حتما <code>line number</code> را وارد کنید. </p>
+<p dir="rtl"> کد زیر نمونه‌ای از متد ارسال تکی پیامک می‌باشد. لطفا توجه کنید که در صورت نداشتن خط اختصاصی می‌بایست حتما <code>linenumber</code> را وارد کنید. </p>
  
 ```php  
 require __DIR__ . '/vendor/autoload.php';  
