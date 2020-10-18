@@ -58,7 +58,7 @@ composer require ghasedak/php
 ```  
 Composer is a dependency manager for PHP which allows you to declare the libraries your project depends on, and it will manage (install/update) them for you.  If you are not familiar with Composer, you can read its documentations and download it via [getcomposer.org](https://getcomposer.org/).
 
-Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and extract it in your project and follow the rest of the instructions below.   
+Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and extract it in your project and follow the rest of the instructions below. Also there is an `Example` folder inside the package which you can use to understand the procedure.
 ## usage  
     
 To use the API, you need an API key. To get that you should have a [Ghasedak](https://ghasedak.io) account. Register and get your API key.  
@@ -71,9 +71,11 @@ require __DIR__ . '/vendor/autoload.php';
 Create an instance from Ghasedak class with your API key:  
   
 ```php  
-$api = new \Ghasedak\GhasedakApi( 'api_key');  
+$api = new \Ghasedak\GhasedakApi( 'your_api_key');  
 ```  
-  
+Don't forget to change `your_api_key` with the key you have got from your Ghasedak account.
+
+
 Send a sms:  
 ```php  
 $api->SendSimple(  
@@ -195,7 +197,7 @@ composer require ghasedak/php
 <a href="https://getcomposer.org/">Composer</a> سامانه‌ای برای مدیریت بسته‌های زبان PHP است که به شما امکان مدیریت (نصب / به روزرسانی) پکیج‌های نوشته شده در این زبان را می‌دهد. اگر با کامپوزر آشنایی ندارید، می‌توانید از طریق سایت <a href="https://getcomposer.org/">getcomposer.org</a> مستندات آن را مطالعه و اقدام به بارگیری و نصب آن کنید.
 </p>
 <p dir="rtl">
-در صورت عدم تمایل به استفاده از کامپوزر، می‌توانید پکیج Ghasedak PHP را از <a href="https://github.com/ghasedakapi/ghasedak-php/archive/master.zip">اینجا</a> دانلود کرده و محتویات فایل زیپ را درون پروژه‌ی خود استفاده کنید.
+در صورت عدم تمایل به استفاده از کامپوزر، می‌توانید پکیج Ghasedak PHP را از <a href="https://github.com/ghasedakapi/ghasedak-php/archive/master.zip">اینجا</a> دانلود کرده و محتویات فایل زیپ را درون پروژه‌ی خود استفاده کنید. همچنین پوشه‌ای با نام <code>Example</code> درون پکیج وجود دارد که می‌توانید از آن برای یادگیری استفاده‌ی صحیح از پکیج استفاده کنید.
 </p>
    
 <h2 dir="rtl" id="usage-fa"> نحوه استفاده </h2>
@@ -206,12 +208,13 @@ composer require ghasedak/php
 ```php  
 require __DIR__ . '/vendor/autoload.php';
 ```  
-<p dir="rtl">یک instance از کلاس <code>Ghasedak</code> با API key خود بسازید:</p>  
+<p dir="rtl">یک instance از کلاس <code>Ghasedak</code> با API key خود بسازید:</p>
   
 ```php  
-$api = new \Ghasedak\GhasedakApi( 'api_key');  
+$api = new \Ghasedak\GhasedakApi( 'your_api_key');  
 ```  
-  
+<p dir="rtl">به خاطر داشته باشید که <code>your_api_key</code> را با کلید دریافتی از حساب قاصدک خود جایگزین کنید.</p>  
+ 
 <p dir="rtl"> پیامک دلخواه‌تان را ارسال کنید:</p>  
   
 ```php  
