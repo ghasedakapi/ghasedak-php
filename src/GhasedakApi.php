@@ -23,7 +23,7 @@ class GhasedakApi
             exit;
         }
         $this->apiKey = $apiKey;
-        $this->base_url = 'http://api.ghasedak.io/v2/';
+        $this->base_url = 'http://api.ghasedak.me/v2/';
     }
 
     protected function runCurl($path, $parameters = null, $method = 'POST')
