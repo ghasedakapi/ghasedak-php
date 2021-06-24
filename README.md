@@ -11,12 +11,12 @@
   <p align="center">  
     Easy-to-use SDK for implementing Ghasedak SMS API in your PHP projects.  
     <br />  
-    <a href="https://ghasedak.io/php"><strong>Explore the docs »</strong></a>  
+    <a href="https://ghasedak.me/php"><strong>Explore the docs »</strong></a>  
     <br />  
     <br />  
-    <a href="https://ghasedak.io/developers">Web Service Documents</a>  
+    <a href="https://ghasedak.me/developers">Web Service Documents</a>  
     ·  
-    <a href="https://ghasedak.io/docs">REST API</a>  
+    <a href="https://ghasedak.me/docs">REST API</a>  
     .  
     <a href="https://github.com/ghasedakapi/ghasedak-php/issues">Report Bug</a>  
     ·  
@@ -61,7 +61,7 @@ Composer is a dependency manager for PHP which allows you to declare the librari
 Alternatively you can download Ghasedak SDK from [here](https://github.com/ghasedakapi/ghasedak-php/archive/master.zip) and extract it in your project and follow the rest of the instructions below. Also there is an `Example` folder inside the package which you can use to understand the procedure.
 ## usage  
     
-To use the API, you need an API key. To get that you should have a [Ghasedak](https://ghasedak.io) account. Register and get your API key.  
+To use the API, you need an API key. To get that you should have a [Ghasedak](https://ghasedak.me) account. Register and get your API key.  
   
 Then require the file autoload.php to get all classes and dependencies loaded.  
 ```php  
@@ -202,7 +202,7 @@ composer require ghasedak/php
    
 <h2 dir="rtl" id="usage-fa"> نحوه استفاده </h2>
 
-<p dir="rtl">برای استفاده از این پکیج می‌بایست API key داشته باشید. جهت دریافت ابتدا در <a href="https://ghasedak.io/">سایت قاصدک</a> ثبت‌نام کنید و از پنل کاربری‌تان API key دریافت کنید.</p>  
+<p dir="rtl">برای استفاده از این پکیج می‌بایست API key داشته باشید. جهت دریافت ابتدا در <a href="https://`/">سایت قاصدک</a> ثبت‌نام کنید و از پنل کاربری‌تان API key دریافت کنید.</p>  
 <p dir="rtl">سپس باید فایل autoload را به پروژه‌ی خود اضافه کنید:</p>  
   
 ```php  
