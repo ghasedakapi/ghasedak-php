@@ -8,22 +8,22 @@ use Ghasedak\Exceptions\ApiException;
 class GhasedakApi
 {
     protected $apiKey;
-    private $base_url;
+    protected $base_url;
 
     const VERSION = "2.0.0";
 
-    public function __construct($apiKey)
+    public function __construct($apiKey, $base_url=null)
     {
         if (!extension_loaded('curl')) {
             die('Curl not loaded');
             exit;
         }
-        if (is_null($apiKey)) {
+        if (empty($apiKey)) {
             die('apiKey has not been sent');
             exit;
         }
         $this->apiKey = $apiKey;
-        $this->base_url = 'http://api.ghasedak.me/v2/';
+        $this->base_url = $base_url ?? 'http://api.ghasedak.me/v2/';
     }
 
     protected function runCurl($path, $parameters = null, $method = 'POST')
