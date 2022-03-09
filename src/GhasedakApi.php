@@ -12,7 +12,7 @@ class GhasedakApi
 
     const VERSION = "2.0.0";
 
-    public function __construct($apiKey)
+    public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/')
     {
         if (!extension_loaded('curl')) {
             die('Curl not loaded');
@@ -23,7 +23,7 @@ class GhasedakApi
             exit;
         }
         $this->apiKey = $apiKey;
-        $this->base_url = 'http://api.ghasedak.me/v2/';
+        $this->base_url = $url;
     }
 
     protected function runCurl($path, $parameters = null, $method = 'POST')
@@ -81,7 +81,7 @@ class GhasedakApi
         return $this->runCurl($path, $params, 'POST');
     }
 
-    public function SendBulk($linenumber, $receptor, $message, $date, $checkid = null)
+    public function SendBulk($linenumber, $receptor, $message, $date = null, $checkid = null)
     {
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
