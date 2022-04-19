@@ -124,6 +124,9 @@ class GhasedakApi
 
     public function Verify($receptor, $type, $template, ...$args)
     {
+        if(is_array($args[0])){
+            $args = $args[0];
+        }
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
