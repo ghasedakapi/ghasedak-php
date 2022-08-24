@@ -9,7 +9,7 @@ class GhasedakApi
 {
     protected $apiKey;
     private $base_url;
-
+    private $request_method = null;
     const VERSION = "2.0.0";
 
     public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/')
@@ -26,8 +26,25 @@ class GhasedakApi
         $this->base_url = $url;
     }
 
+    /**
+     * @param  string  $request_method
+     *
+     * @return $this
+     */
+    public function setRequestMethod($request_method = 'GET')
+    {
+        if (!in_array($request_method, ['GET', 'POST'])) {
+            new \Exception("'$request_method' method doesn't support !");
+        }
+        $this->request_method = $request_method;
+        return $this;
+    }
+
     protected function runCurl($path, $parameters = null, $method = 'POST')
     {
+        if ($this->request_method) {
+            $method = $this->request_method;
+        }
         $headers = array(
             'apikey:' . $this->apiKey,
             'Accept: application/json',
