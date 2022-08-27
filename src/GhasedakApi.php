@@ -182,14 +182,14 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function Status($id, $type)
+    public function Status($ids, $type = self::MESSAGE_ID_TYPE)
     {
-        if (is_array($id)) {
-            $id = implode(",", $id);
+        if (is_array($ids)) {
+            $ids = implode(",", $ids);
         }
         $path = 'sms/status';
         $params = array(
-            "id" => $id,
+            "id" => $ids,
             "type" => $type
         );
         return $this->runCurl($path, $params, 'GET');
