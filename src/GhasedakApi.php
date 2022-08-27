@@ -10,6 +10,11 @@ class GhasedakApi
     protected $apiKey;
     private $base_url;
     private $request_method = null;
+    private $verify_type = 1;
+    const VERIFY_TEXT_TYPE = 1;
+    const VERIFY_VOICE_TYPE = 2;
+    const MESSAGE_ID_TYPE = 1;
+    const CHECK_ID_TYPE = 2;
     const VERSION = "2.0.0";
 
     public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/')
@@ -37,6 +42,21 @@ class GhasedakApi
             new \Exception("'$request_method' method doesn't support !");
         }
         $this->request_method = $request_method;
+        return $this;
+    }
+
+    /**
+     * @param  \Ghasedak\int  $type
+     *
+     * @return $this
+     * @throws \Exception
+     */
+    public function setVerifyType($type)
+    {
+        if (!is_int($type)) {
+            throw new \Exception("the 'verity type' must be integer");
+        }
+        $this->verify_type = $type;
         return $this;
     }
 
@@ -139,7 +159,7 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function Verify($receptor, $type, $template, ...$args)
+    public function Verify($receptor, $template, ...$args)
     {
         if(is_array($args[0])){
             $args = $args[0];
@@ -150,7 +170,7 @@ class GhasedakApi
         $path = 'verification/send/simple';
         $params = array(
             "receptor" => $receptor,
-            "type" => $type,
+            "type" => $this->verify_type,
             "template" => $template
         );
         if (count($args) > 10 || count($args) == 0) {
