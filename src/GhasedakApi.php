@@ -159,7 +159,7 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function Verify($receptor, $type, $template, ...$args)
+    public function Verify($receptor, $template, ...$args)
     {
         if(is_array($args[0])){
             $args = $args[0];
@@ -170,7 +170,7 @@ class GhasedakApi
         $path = 'verification/send/simple';
         $params = array(
             "receptor" => $receptor,
-            "type" => $type,
+            "type" => $this->verify_type,
             "template" => $template
         );
         if (count($args) > 10 || count($args) == 0) {
