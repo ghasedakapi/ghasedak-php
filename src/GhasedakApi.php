@@ -9,6 +9,7 @@ class GhasedakApi
 {
     protected $apiKey;
     private $base_url;
+    private $agent;
     private $request_method = null;
     private $verify_type = 1;
     const VERIFY_TEXT_TYPE = 1;
@@ -17,7 +18,7 @@ class GhasedakApi
     const CHECK_ID_TYPE = 2;
     const VERSION = "2.0.0";
 
-    public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/')
+    public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/', $agent = 'php')
     {
         if (!extension_loaded('curl')) {
             die('Curl not loaded');
@@ -29,6 +30,7 @@ class GhasedakApi
         }
         $this->apiKey = $apiKey;
         $this->base_url = $url;
+        $this->agent = $agent;
     }
 
     /**
@@ -73,7 +75,7 @@ class GhasedakApi
         );
 
         $params = http_build_query($parameters);
-        $url = $this->base_url . $path . '?agent=php';
+        $url = $this->base_url . $path . "?agent={$this->agent}";
 
         $init = curl_init();
         curl_setopt($init, CURLOPT_URL, $url);
