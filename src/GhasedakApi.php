@@ -16,7 +16,7 @@ class GhasedakApi
     const VERIFY_VOICE_TYPE = 2;
     const MESSAGE_ID_TYPE = 1;
     const CHECK_ID_TYPE = 2;
-    const VERSION = "2.0.0";
+    const VERSION = "2.1.3";
 
     public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/', $agent = 'php')
     {
