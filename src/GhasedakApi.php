@@ -4,6 +4,8 @@ namespace Ghasedak;
 
 use Ghasedak\Exceptions\HttpException;
 use Ghasedak\Exceptions\ApiException;
+use InvalidArgumentException;
+use RuntimeException;
 
 class GhasedakApi
 {
@@ -21,27 +23,28 @@ class GhasedakApi
     public function __construct($apiKey, $url = 'http://api.ghasedak.me/v2/', $agent = 'php')
     {
         if (!extension_loaded('curl')) {
-            die('Curl not loaded');
-            exit;
+            throw new RuntimeException('Required extension is not loaded: curl');
         }
+        
         if (is_null($apiKey)) {
-            die('apiKey has not been sent');
-            exit;
+            throw new InvalidArgumentException('Api key has not been sent');
         }
+        
         $this->apiKey = $apiKey;
         $this->base_url = $url;
         $this->agent = $agent;
     }
-
+    
     /**
-     * @param  string  $request_method
+     * @param string $request_method
      *
      * @return $this
+     * @throws \Exception
      */
     public function setRequestMethod($request_method = 'GET')
     {
         if (!in_array($request_method, ['GET', 'POST'])) {
-            new \Exception("'$request_method' method doesn't support !");
+            throw new \Exception("'$request_method' method doesn't support !");
         }
         $this->request_method = $request_method;
         return $this;
